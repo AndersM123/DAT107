@@ -36,10 +36,10 @@ public class Avdeling {
     
     public Avdeling(){}
     
-    public Avdeling(String navn,Ansatt sjef) {
+    public Avdeling(String navn,Ansatt sjef, int id) {
     	this.navn = navn;
     	this.sjef = sjef;
-    	
+    	this.id = id;
     }
     
 
