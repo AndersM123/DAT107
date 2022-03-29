@@ -33,28 +33,34 @@ public class Main {
 		
 		System.out.println("finn ansatt med brukernavn");
 		String bruker = ansatt.nextLine();
-		System.out.println("brukernavn: " + bruker);
+		System.out.println("brukernavn: " + AnsattDAO.finnAnsattMedBrukernavn(bruker));
 		
 		System.out.println("finn ansattlisten for alle ansatte");
 		String alleAns = ansatt.nextLine();
-		System.out.println("AnsattListe: " + alleAns);
+		System.out.println("AnsattListe: " + AnsattDAO.finnAlleAnsatt());
 		
+		System.out.println("Oppdater stilling til første ansatt til økonom");
+		int førsteAns = ansatt.nextInt();
+		String nyStilling = ansatt.nextLine();
+		System.out.println("Oppdatert stilling: " + AnsattDAO.oppdaterStilling(førsteAns, nyStilling));
 		
+		System.out.println("Legg til ny ansatt: ");
+		String nyBruker = ansatt.nextLine();
+		String nyFor = ansatt.nextLine();
+		String nyBak = ansatt.nextLine();
+		String nyStil = ansatt.nextLine();
+		int nyLonn = ansatt.nextInt();
+		int Avd = ansatt.nextInt();
+		System.out.println("ny ansatt: " + AnsattDAO.lageNyAnsatt
+			(nyBruker, nyFor, nyBak, LocalDate.now(), nyStil, nyLonn, AvdelingDAO.finnAvdeling(Avd)));
+				
+		
+		//Iterasjon 3
 
-//		System.out.println("Oppdater stilling til første ansatt til økonom");
-//		ansattdao.oppdaterStilling(1, "Økonom");
-//		System.out.println(ansattdao.finnAnsattMedPK(1));
-//		System.out.println("\n---\n");
-	//	
-//		System.out.println("Oprett ny ansatt");
-//		System.out.println("Ansatt nyAnsatt = ansattdao.lageNyAnsatt(Iph1, Dag, Didrik, LocalDate.now(), Økonom, 670000, avdeling");
-//		//Ansatt nyAnsatt = ansattdao.lageNyAnsatt("Iph2", "Dag", "Didrik", LocalDate.now(), "Økonom", 670000, avdeling);
-//		System.out.println(ansattdao.finnAnsattMedBrukernavn("Iph1"));
 		
 		
 		
 		
-
 	}
 
 }

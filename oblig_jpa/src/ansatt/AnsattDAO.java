@@ -26,7 +26,7 @@ public class AnsattDAO {
 		}
 	}
 
-	public List<Ansatt> finnAnsattMedBrukernavn(String brukernavn) {
+	public static List<Ansatt> finnAnsattMedBrukernavn(String brukernavn) {
 		EntityManager em = emf.createEntityManager();
 		try {
 			TypedQuery<Ansatt> query = em.createQuery("SELECT a FROM Ansatt a WHERE a.brukernavn = :brukernavn",
@@ -38,7 +38,7 @@ public class AnsattDAO {
 		}
 	}
 
-	public List<Ansatt> finnAlleAnsatt() {
+	public static List<Ansatt> finnAlleAnsatt() {
 		EntityManager em = emf.createEntityManager();
 		try {
 			TypedQuery<Ansatt> query = em.createQuery("SELECT a FROM Ansatt a", Ansatt.class);
@@ -49,16 +49,20 @@ public class AnsattDAO {
 
 	}
 
-	public void oppdaterStilling(int id, String nyStilling) {
+	public static String oppdaterStilling(int id, String nyStilling) {
+		
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
-
+		String Stilling = "";
+		
 		try {
 			tx.begin();
 
 			Ansatt ansatt = em.find(Ansatt.class, id);
 			ansatt.setStilling(nyStilling);
 			tx.commit();
+			Stilling = nyStilling;
+			
 		} catch (Throwable e) {
 			e.printStackTrace();
 			if (tx.isActive()) {
@@ -67,10 +71,12 @@ public class AnsattDAO {
 		} finally {
 			em.close();
 		}
+		return Stilling;
+		
 	}
 	
 	
-	public Ansatt lageNyAnsatt(String nyttBrukernavn, String nyttFornavn, String nyttEtternavn, LocalDate nyDato,
+	public static Ansatt lageNyAnsatt(String nyttBrukernavn, String nyttFornavn, String nyttEtternavn, LocalDate nyDato,
 			String nyStilling, int nyLonn, Avdeling avdeling) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();

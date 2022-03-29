@@ -13,9 +13,9 @@ import avdeling.Avdeling;
 
 public class AvdelingDAO {
 
-	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinPersistenceUnit");
+	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinPersistenceUnit");
 
-	public Avdeling finnAvdeling(int id) {
+	public static Avdeling finnAvdeling(int id) {
 		EntityManager em = emf.createEntityManager();
 		Avdeling avdeling = null;
 		try {
